@@ -1,1 +1,1 @@
-Pocet pismen je:78 a pocet cisel:15
+Pismen je:78 a cisel:15

@@ -1,20 +1,20 @@
 #include "pch.h"
 #include <iostream>
 #include "tchar.h"
+#include <ctype.h>
 
-FILE *s;
-
-char prostor[200];
+FILE* s;
+char retazec[200];
 char output[50] = "Pismen je:";
-char *point = prostor;
- 
-int pismena = 0; 
+char* point = retazec;
+
+int pismena = 0;
 int cisla = 0;
 int sz = 1;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	// navigace do .txt souboru, pozivam r+ abychom soubor precetli	fopen_s(&s, "vstup.txt", "r+");
+	fopen_s(&s, "vstup.txt", "r+");
 	printf("%p\n", s);
 	if (s == NULL) {
 		fopen_s(&s, "vstup.txt", "w+");
@@ -25,8 +25,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	sz = ftell(s);
 	fseek(s, 0L, SEEK_SET);
 
-	
-	//pocet pismen a cisel
 	for (*point; *point != 0 && sz != 0; *point++) {
 		if (isalpha(*point)) {
 			pismena++;
@@ -35,19 +33,14 @@ int _tmain(int argc, _TCHAR* argv[])
 			cisla++;
 		}
 	}
-
-
-	//   ***TISK***
-	printf("Pocet pismen je:%d a pocet cisel:%d\n", pismena, cisla);
+	printf("Pismen je:%d a cisel:%d\n", pismena, cisla);
 
 	fclose(s);
 
 
 	fopen_s(&s, "vystup.txt", "w+");
-	fprintf(s, "Pocet pismen je:%d a pocet cisel:%d\n", pismena, cisla);
+	fprintf(s, "Pismen je:%d a cisel:%d\n", pismena, cisla);
 	fclose(s);
 
 	return 0;
-
-	//Marko Lukic 221282 BPC-TLI03 BPC-PC1
 }
